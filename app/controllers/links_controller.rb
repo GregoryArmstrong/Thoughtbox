@@ -17,6 +17,13 @@ class LinksController < ApplicationController
     redirect_to links_path
   end
 
+  def update
+    @link = Link.find(params[:id])
+    @link.read = !@link.read
+    @link.save
+    redirect_to links_path
+  end
+
   private
 
   def valid_url?(url)

@@ -1,5 +1,6 @@
 $(document).ready(function(){
   queryAllLinks();
+  $('#search_field').keyup(searchLinkElements);
 });
 
 function queryAllLinks(){
@@ -26,9 +27,9 @@ function createLinkElements(links) {
 }
 
 function formatLink(link){
-  return ("<li link_id='" + link.id + "'>" +
-          "<h2>" + link.url + "</h2>" +
-          "<h3>" + link.title + "</h3>" +
+  return ("<li link_id='" + link.id + "' class='link-item'>" +
+          "<h2 class='link-item-url'>" + link.url + "</h2>" +
+          "<h3 class='link-item-title'>" + link.title + "</h3>" +
           "<h3><a href='/links/" + link.id + "/edit'>Edit</a>" +
           formatReadOrUnread(link) +
           "</li>");
@@ -67,4 +68,36 @@ function setAJAXPutListener(){
 function recycleLinks(){
   $('li').remove();
   queryAllLinks();
+}
+
+function searchLinkElements(){
+  var search_term = $('#search_field').val();
+  matchSearch(search_term);
+}
+
+function matchSearch(term){
+  var link_items = $('.link-item').toArray();
+  link_items.forEach(function(link){
+    var children = $(link).children().toArray();
+    url = $(children[0]).text();
+    title = $(children[1]).text();
+    hideItem(term, link, url, title);
+    showItem(term, link, url, title);
+  });
+}
+
+function hideItem(search_term, link, url, title){
+    if (url.indexOf(search_term) == -1) {
+    link.style.display="none";
+  } else if (title.indexOf(search_term) == -1) {
+    link.style.display="none";
+  }
+}
+
+function showItem(search_term, link, url, title){
+  if (url.indexOf(search_term) !== -1) {
+    link.style.display="inline";
+  } else if (title.indexOf(search_term) !== -1) {
+    link.style.display="inline";
+  }
 }

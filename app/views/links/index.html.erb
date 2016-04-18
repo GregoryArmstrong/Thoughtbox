@@ -1,3 +1,14 @@
 <%= link_to "Log Out", session_path(id: cookies[:user_id]), method: :delete %>
 
 <h1>Links Index</h1>
+
+<h2>Submit a Link :</h2>
+<%= form_for(@link) do |f| %>
+  <%= f.label :url, "URL" %>
+  <%= f.text_field :url %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.submit "Submit Link" %>
+<% end %>

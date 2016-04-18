@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.feature "RegisteredUserCanLogOut", type: :feature do
-  Role.create(name: "registered_user")
     scenario "Registered user can log out" do
+      Role.create(name: "registered_user")
       visit root_path
 
       click_on('Sign Up')
 
-      fill_in('Username', :with => 'GregArm')
+      fill_in('Username', :with => 'GregArmLogout')
       fill_in('Email', :with => 'intergalacticgentleman@gmail.com')
-      fill_in('Password', :with => 'pass')
-      fill_in('Password Confirmation', :with => 'pass')
+      fill_in('Password', :with => 'password')
+      fill_in('Password Confirmation', :with => 'password')
       click_on('Submit')
 
       expect(current_path).to eq links_path

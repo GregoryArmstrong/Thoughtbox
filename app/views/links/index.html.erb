@@ -1,3 +1,20 @@
 <%= link_to "Log Out", session_path(id: cookies[:user_id]), method: :delete %>
 
+<h2>Submit a Link :</h2>
+<%= form_for(@link) do |f| %>
+  <%= f.label :url, "URL" %>
+  <%= f.text_field :url %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.submit "Submit Link" %>
+<% end %>
+
 <h1>Links Index</h1>
+
+<% @links.each do |link| %>
+  <h2><%= link.url %></h2>
+  <h3><%= link.title %></h3>
+  <h3>Read: <%= link.read.to_s.capitalize %></h3>
+<% end %>

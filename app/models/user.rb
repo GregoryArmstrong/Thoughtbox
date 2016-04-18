@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :user_roles
   has_many :roles, through: :user_roles
+  has_many :links
 
   validates :username, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

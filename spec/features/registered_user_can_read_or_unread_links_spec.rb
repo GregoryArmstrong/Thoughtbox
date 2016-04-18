@@ -25,5 +25,9 @@ RSpec.feature "RegisteredUserCanReadOrUnreadLinks", type: :feature do
     click_on('Mark as Read')
 
     expect(Link.last.read).to eq true
+
+    click_on('Mark as Unread')
+
+    expect(Link.last.read).to eq false
   end
 end

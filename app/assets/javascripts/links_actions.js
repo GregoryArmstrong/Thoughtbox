@@ -4,7 +4,17 @@ $(document).ready(function(){
   $('.sort-read-unread').click(function(){
     sortReadUnread();
   });
+  $('.show-all').click(function(){
+    showAll();
+  });
 });
+
+function showAll(){
+  var links = $('.link-item').toArray();
+  links.forEach(function(link){
+    link.style.display="inline";
+  });
+}
 
 function sortReadUnread(){
   var reads = $('.mark_read').parent().toArray();

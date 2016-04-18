@@ -1,7 +1,29 @@
 $(document).ready(function(){
   queryAllLinks();
   $('#search_field').keyup(searchLinkElements);
+  $('.sort-read-unread').click(function(){
+    sortReadUnread();
+  });
 });
+
+function sortReadUnread(){
+  var reads = $('.mark_read').parent().toArray();
+  reads.forEach(function(parent){
+    if (parent.style.display == 'none') {
+      parent.style.display="inline";
+    } else {
+      parent.style.display="none";
+    }
+  });
+  var unreads = $('.mark_unread').parent().toArray();
+  unreads.forEach(function(parent){
+    if (parent.style.display == 'inline') {
+      parent.style.display="none";
+    } else {
+      parent.style.display="inline";
+    }
+  });
+}
 
 function queryAllLinks(){
   $.ajax({

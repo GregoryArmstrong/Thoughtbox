@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "RegisteredUserCanLogIn", type: :feature do
+RSpec.feature "RegisteredUserCanLogOut", type: :feature do
   Role.create(name: "registered_user")
     scenario "Registered user can log out" do
       visit root_path

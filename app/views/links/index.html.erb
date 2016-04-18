@@ -1,5 +1,12 @@
 <%= link_to "Log Out", session_path(id: cookies[:user_id]), method: :delete %>
 
+<h2>Search Field:</h2>
+<input type="text" name="search_field" id="search_field"/>
+
+<h2 class="sort-read-unread">Sort By Read / Unread</h2>
+<h2 class="show-all">Show All</h2>
+
+
 <h2>Submit a Link :</h2>
 <%= form_for(@link) do |f| %>
   <%= f.label :url, "URL" %>
@@ -13,19 +20,5 @@
 
 <h1>Links Index</h1>
 
-<ul>
-  <% @links.each do |link| %>
-    <li>
-      <h2><%= link.url %></h2>
-      <h3><%= link.title %></h3>
-      <h3><%= link_to "Edit", edit_link_path(link) %></h3>
-      <% if link.read %>
-        <!-- <h3 class="mark_read" id="<%= link.id %>">Mark as Unread</h3> -->
-        <h3><%= link_to "Mark as Unread", link_path(link, switch: true), method: :patch, class: "mark_unread" %></h3>
-      <% else %>
-        <!-- <h3 class="mark_unread" id="<%= link.id %>">Mark as Unread</h3> -->
-        <h3><%= link_to "Mark as Read", link_path(link, switch: true), method: :patch, class: "mark_read" %></h3>
-      <% end %>
-    </li>
-  <% end %>
+<ul class="links-list">
 </ul>

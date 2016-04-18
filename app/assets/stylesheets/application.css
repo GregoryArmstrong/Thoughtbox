@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.mark_unread {
+  color: grey;
+}

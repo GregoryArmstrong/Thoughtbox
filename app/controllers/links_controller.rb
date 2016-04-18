@@ -5,6 +5,11 @@ class LinksController < ApplicationController
   def index
     @link = Link.new
     @links = Link.where(user_id: cookies[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @links }
+    end
   end
 
   def create
@@ -23,7 +28,7 @@ class LinksController < ApplicationController
 
   def update
     @link = Link.find(params[:id])
-    if params[:switch]
+    if params[:toggle]
       @link.read = !@link.read
       @link.save
     elsif (params[:link][:url] || params[:link][:title]) && valid_url?(params[:link][:url])

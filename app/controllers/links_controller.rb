@@ -17,10 +17,19 @@ class LinksController < ApplicationController
     redirect_to links_path
   end
 
+  def edit
+    @link = Link.find(params[:id])
+  end
+
   def update
     @link = Link.find(params[:id])
-    @link.read = !@link.read
-    @link.save
+    if params[:switch]
+      @link.read = !@link.read
+      @link.save
+    elsif (params[:link][:url] || params[:link][:title]) && valid_url?(params[:link][:url])
+      @link.update_attributes(url: params[:link][:url],
+                              title: params[:link][:title])
+    end
     redirect_to links_path
   end
 

@@ -1,0 +1,9 @@
+<%= form_for(@link, url: link_path(@link), method: :patch) do |f| %>
+  <%= f.label :url, "URL" %>
+  <%= f.text_field :url, :placeholder => "#{@link.url}" %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, :placeholder => "#{@link.title}" %>
+
+  <%= f.submit "Submit Link" %>
+<% end %>

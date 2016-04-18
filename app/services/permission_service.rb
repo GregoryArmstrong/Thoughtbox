@@ -22,6 +22,7 @@ class PermissionService
     return true if controller == "links" && action == "index"
     return true if controller == "links" && action == "create"
     return true if controller == "links" && action == "update"
+    return true if controller == "links" && action == "edit"
     return true if controller == "sessions" && action == "destroy"
     return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"

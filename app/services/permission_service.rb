@@ -17,9 +17,10 @@ class PermissionService
   end
 
   def registered_user_permissions
-    # return true if controller == "welcome" && action == "index"
-    # return true if controller == "users" && action == "new"
+    return true if controller == "welcome" && action == "index"
+    return true if controller == "users" && action == "new"
     return true if controller == "links" && action == "index"
+    return true if controller == "sessions" && action == "destroy"
   end
 
   def guest_permissions

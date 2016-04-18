@@ -28,6 +28,9 @@ RSpec.feature "UsersCanViewLinkSubmissionForms", type: :feature do
 
     expect(Link.count).to eq 1
     expect(current_path).to eq links_path
+    expect(page).to have_content('http://today.turing.io')
+    expect(page).to have_content("Turing Today")
+    expect(page).to have_content("False")
   end
 
   scenario "registered user cannot submit invalid link via submission form on links#index" do
@@ -57,7 +60,11 @@ RSpec.feature "UsersCanViewLinkSubmissionForms", type: :feature do
     click_on('Submit Link')
 
     expect(Link.count).to eq 0
+    expect(page).to have_content("Invalid URL Submitted.")
     expect(current_path).to eq links_path
+    expect(page).to_not have_content('cheese')
+    expect(page).to_not have_content("Turing Today")
+    expect(page).to_not have_content("False")
   end
 
 end
